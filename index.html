@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mini Projects</title>
+    <style>
+        body{
+            font-family: 'Calibri', 'Helvetica', sans-serif;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            display: inline-block;
+        }
+        a:link,
+        a:visited{
+            text-decoration: none;
+            color:#000;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+        a::after{
+            content: "";
+            display: inline-block;
+            width: 0;
+            height: 2px;
+            background: #000;
+            transition: all 0.2s;
+        }
+        a:hover::after{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="./tic_tac_toe/index.html">Tic Tac Toe</a></li>
+    </ul>
+    
+</body>
+</html>
