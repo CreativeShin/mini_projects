@@ -67,6 +67,7 @@
                     if(value != "" && value != undefined){
                         item.textContent = value;
                         gridArray[row][column] = value;
+                        botAi(gridArray);
                         console.log(gridArray);
                     }
                     
@@ -78,6 +79,26 @@
                 handle.forEach(function(item){
                     item.textContent = "_";
                 });
+            }
+            function botAi(arr){
+                let randRow, randCol;
+                randRow = Math.floor(Math.random() * arr.length);
+                randCol = Math.floor(Math.random() * arr.length);
+                if(gridArray[randRow][randCol] !== value){
+                    gridArray[randRow][randCol] = value === 'X' ? 'O' : (value === 'O' ? 'X' : "_");
+                }else{
+                    botAi(arr);
+                }
+                let k = 0;
+                for(var i = 0 ; i< arr.length ; i++){
+                    for(j = 0; j< arr.length; j++){
+                        if(k < genericHandle.length){
+                            genericHandle[k].textContent = arr[i][j];
+                            k++;
+                        }  
+                    }
+                }
+              
             }
 
         </script>
