@@ -64,11 +64,11 @@
         
             genericHandle.forEach(function(item){
                 item.addEventListener('click', function(){
-                    let row = item.getAttribute('data-row');
-                    let column = item.getAttribute('data-column');
-                    if((value != "" && value != undefined) && item.textContent !== botVal){
-                        item.textContent = value;
-                        bot();
+                    // let row = item.getAttribute('data-row');
+                    // let column = item.getAttribute('data-column');
+                    if((value != "" && value != undefined) && (item.textContent === "_")){
+                            item.textContent = value;
+                            bot();     
                     }
                     
                 });
@@ -87,7 +87,7 @@
                 let count = 0;
                 console.log(randIndex);
                 if(genericHandle[randIndex].textContent === "_" || ""){
-                    genericHandle[randIndex].textContent = value === 'X' ? 'O' : (value === 'O' ? 'X' : "_");
+                    genericHandle[randIndex].textContent = botVal;
                 }else{
                     bot();
                     count++;
