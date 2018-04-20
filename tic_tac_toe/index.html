@@ -40,14 +40,9 @@
         </div>
 
         <script>
-            let value;
+            let value, botVal;
             const generic = document.querySelectorAll('.generic');
             const genericHandle = document.querySelectorAll('.generic');
-            let gridArray = [
-                ['_','_','_'],
-                ['_','_','_'],
-                ['_','_','_']
-                ];
 
             // click on x button for the value to be x and o for value to be o.
 
@@ -55,20 +50,25 @@
                 button.addEventListener('click', function(){
                     value= button.textContent;
                     resetAll(genericHandle);
+                    if(value === 'X'){
+                        botVal = 'O'
+                    }else if(value === 'O'){
+                        botVal = 'X';
+                    }else{
+                        botVal = "";
+                    }
                 });
             });
 
             //correspond each data-index element with the array. 
-
+        
             genericHandle.forEach(function(item){
                 item.addEventListener('click', function(){
                     let row = item.getAttribute('data-row');
                     let column = item.getAttribute('data-column');
-                    if(value != "" && value != undefined){
+                    if((value != "" && value != undefined) && item.textContent !== botVal){
                         item.textContent = value;
-                        gridArray[row][column] = value;
-                        botAi(gridArray);
-                        console.log(gridArray);
+                        bot();
                     }
                     
                 });
@@ -80,25 +80,21 @@
                     item.textContent = "_";
                 });
             }
-            function botAi(arr){
-                let randRow, randCol;
-                randRow = Math.floor(Math.random() * arr.length);
-                randCol = Math.floor(Math.random() * arr.length);
-                if(gridArray[randRow][randCol] !== value){
-                    gridArray[randRow][randCol] = value === 'X' ? 'O' : (value === 'O' ? 'X' : "_");
+           
+
+            function bot(){
+                let randIndex = Math.floor(Math.random() * genericHandle.length);
+                let count = 0;
+                console.log(randIndex);
+                if(genericHandle[randIndex].textContent === "_" || ""){
+                    genericHandle[randIndex].textContent = value === 'X' ? 'O' : (value === 'O' ? 'X' : "_");
                 }else{
-                    botAi(arr);
-                }
-                let k = 0;
-                for(var i = 0 ; i< arr.length ; i++){
-                    for(j = 0; j< arr.length; j++){
-                        if(k < genericHandle.length){
-                            genericHandle[k].textContent = arr[i][j];
-                            k++;
-                        }  
+                    bot();
+                    count++;
+                    if(count > 50){
+                        return 0;
                     }
                 }
-              
             }
 
         </script>
