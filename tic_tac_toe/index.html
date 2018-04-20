@@ -41,6 +41,7 @@
 
         <script>
             let value, botVal;
+            let count = 0;
             const generic = document.querySelectorAll('.generic');
             const genericHandle = document.querySelectorAll('.generic');
 
@@ -68,6 +69,7 @@
                     // let column = item.getAttribute('data-column');
                     if((value != "" && value != undefined) && (item.textContent === "_")){
                             item.textContent = value;
+                            count = 0;
                             bot();     
                     }
                     
@@ -84,7 +86,7 @@
 
             function bot(){
                 let randIndex = Math.floor(Math.random() * genericHandle.length);
-                let count = 0;
+                
                 console.log(randIndex);
                 if(genericHandle[randIndex].textContent === "_" || ""){
                     genericHandle[randIndex].textContent = botVal;
