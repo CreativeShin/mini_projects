@@ -151,7 +151,7 @@
                             item.textContent = value;
                             count = 0;
                             bot();
-                            logic(genericHandle);     
+                            logic();     
                     }
                     
                 });
@@ -189,37 +189,63 @@
             // Vertical Check x 3
             // Diagonal Check x 2
 
-           
-           function logic(handle){
-            let win;
-            console.log("FUCKING BULLSHITE");
-            horCheck(handle);
-            verCheck(handle);
-            diaCheck(handle);
-           }
+           function logic(){
+            let calcHandle = [];
+            let winVal;
+            genericHandle.forEach((item) => {calcHandle.push(item.textContent);});
+            
+            // console.log("FUCKING BULLSHITE");
+            console.log(calcHandle);
 
-            // REFERENCE
-            // ===================================================
-            // function logic(handle){
-            //     let firstRowVal = handle[0].textContent; 
-            //     let bool = true;
-            //     let win;
-            //     for(let i = 0; i < 3; i++){
-            //         if(firstRowVal !== handle[i].textContent){
-            //             bool = false;
-            //         }
-            //     }
-            //     if(bool){
-            //         if(firstRowVal === value){
-            //             win = "Player Wins";
-            //         }else if( firstRowVal === botVal){
-            //             win = "Bot Wins";
-            //         }else{
-            //             win = "";
-            //         }
-            //     }
-            //     text.textContent = win;
-            // }
+            if((calcHandle[0] === calcHandle[1]) && (calcHandle[0] === calcHandle[2])){
+                console.log('works');
+                winVal = calcHandle[0];
+                winningLogic(winVal);
+            }
+
+            if((calcHandle[3] === calcHandle[4]) && (calcHandle[3]=== calcHandle[5])){
+                winVal = calcHandle[3];
+                winningLogic(winVal);
+            }
+
+            if((calcHandle[6] === calcHandle[7]) && (calcHandle[6]=== calcHandle[8])){
+                winVal = calcHandle[6];
+                winningLogic(winVal);
+            }
+
+            if((calcHandle[0] === calcHandle[3]) && (calcHandle[0]=== calcHandle[6])){
+                winVal = calcHandle[0];
+                winningLogic(winVal);
+            }
+            if((calcHandle[1] === calcHandle[4]) && (calcHandle[1]=== calcHandle[7])){
+                winVal = calcHandle[1];
+                winningLogic(winVal);
+            }
+            if((calcHandle[2] === calcHandle[5]) && (calcHandle[2]=== calcHandle[8])){
+                winVal = calcHandle[2];
+                winningLogic(winVal);
+            }
+            if((calcHandle[0] === calcHandle[4]) && (calcHandle[0]=== calcHandle[8])){
+                winVal = calcHandle[0];
+                winningLogic(winVal);
+            }
+            if((calcHandle[2] === calcHandle[4]) && (calcHandle[2]=== calcHandle[6])){
+                winVal = calcHandle[2];
+                winningLogic(winVal);
+            }   
+           }
+           function winningLogic(val){
+               console.log("Winning Logic.")
+               let win;
+               if(val === value){
+                    win = "Player Wins!";
+               }else if(val === botVal){
+                    win = "Bot Wins!";
+               }else{
+                   win = "";
+               }
+               text.textContent = win;
+           }
         </script>
     </body >
 </html>
