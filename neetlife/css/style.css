@@ -1,0 +1,86 @@
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  background: url("../image/img.jpg");
+  background-size: cover; }
+
+.bg-dark {
+  background: black !important; }
+
+nav .nav-link::after {
+  content: "";
+  display: block;
+  width: 0%;
+  height: 1px;
+  background: none;
+  transition: all 0.2s; }
+
+nav .nav-link:hover::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: white; }
+
+header {
+  width: 100%;
+  height: 350px;
+  background: black; }
+  header h1 {
+    position: relative;
+    text-align: center;
+    top: 50%;
+    color: white;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 4rem;
+    font-weight: 100; }
+  header .join-button {
+    position: relative;
+    top: 36%;
+    text-align: center; }
+    header .join-button .join {
+      background: none;
+      border: 1px solid white;
+      color: white;
+      margin: 48px;
+      padding: 6px 36px;
+      text-transform: uppercase;
+      display: inline-block;
+      font-weight: 500;
+      transition: all 0.2s; }
+    header .join-button .join, header .join-button .join:link, header .join-button .join:visited, header .join-button .join:hover, header .join-button .join:active {
+      text-decoration: none; }
+    header .join-button .join:hover {
+      color: black;
+      border: 1px solid black;
+      background: white; }
+    header .join-button a:active {
+      transform: translateY(5%); }
+
+.description {
+  text-align: center;
+  margin-top: 120px;
+  margin-bottom: 120px; }
+  .description h2 {
+    color: #eee;
+    font-weight: 300;
+    border-bottom: 1px solid #222;
+    margin-bottom: 28px; }
+  .description p {
+    color: #ddd; }
+
+footer {
+  background: black;
+  box-sizing: border-box;
+  padding: 20px; }
+  footer ul {
+    margin: 0; }
+    footer ul li {
+      text-decoration: none;
+      list-style: none; }
+      footer ul li a, footer ul li a:link, footer ul li a:visited, footer ul li a:hover, footer ul li a:active {
+        color: #777; }
+  footer .footer-info {
+    margin-top: 48px;
+    text-align: center; }
