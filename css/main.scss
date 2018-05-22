@@ -2,31 +2,38 @@
     margin:0;
     padding:0;
 }
-body{
+body{  
     background: #222;
+    background-image: url('../image/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-size: 14px;
-}
+    color: #fff;
+   
+}  
 a, a:link, a:visited, a:hover,a:active{
     text-decoration: none;
-    color:#fff;
+    color:#fff;     
 
 }
-
+ 
 // NAVIGATION 
-
+ 
 .menu:hover{
     cursor: pointer;
-}
+}    
 .line{
     position:absolute; 
     width: 20px;
     height: 1px;
     background: #fff; 
     right: 8px;
+    transition: all 0.2s;
 }
-.line1{
+.line1{  
     top: 20px;
 } 
 .line2{
@@ -60,11 +67,11 @@ nav{
     ul{
         list-style: none;
         // flex:-1;
-        // display:flex;
-      
-        li{
+        // display:flex;  
+       
+        li{ 
             padding: 20px;
-            text-transform: uppercase;
+            // text-transform: uppercase;
             a::after{
                 content:"";
                 width: 0%;
@@ -83,12 +90,23 @@ nav{
     }
 }
 
-// NAVIGATION END
+.cross{
+    .line1{
+        transform: rotate(45deg);    
+        transform-origin: center;  
+        top: 28px;  
+    }
+    .line2{
+        display: none;      
+    }
+    .line3{
+        transform: rotate(-45deg); 
+        transform-origin: center;
+         
+    }
+} 
 
-.wrapper{
-    width: 900px;
-    margin: 0 auto;
-}
+
 
 @media(min-width:600px){
     nav{
@@ -104,7 +122,36 @@ nav{
     .menu{
         display: none; 
     }
+ 
     }
   
-    
- 
+     
+ @keyframes animateMenu{
+     0%{
+        opacity:0;
+     }
+     100%{
+        opacity:1;
+     }
+ }
+   
+// NAVIGATION END   
+
+
+header{
+    margin-top: 400px;
+    text-align: center;
+    h1{
+        color: #fff;
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;   
+        text-transform: uppercase; 
+        letter-spacing: 10px;  
+        font-size: 2.8rem;  
+    }    
+}     
+
+.wrapper{
+    width: 900px;
+    margin: 0 auto; 
+}
