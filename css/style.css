@@ -4,7 +4,6 @@
 
 body {
   background: #222;
-  background-image: url("../image/bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
