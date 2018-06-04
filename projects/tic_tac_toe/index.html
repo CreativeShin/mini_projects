@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Tic Tac Toe</title>
+        <style>
+        
+            body{
+                color:#fff;
+                font-family: 'Calibri', 'Helvetica', sans-serif;
+                background: #2980b9;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #2c3e50, #2980b9);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #2c3e50, #2980b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+            }
+            .container{
+                width: 500px;
+                margin: 0 auto;
+            }
+            h1{
+                text-transform: uppercase;
+                letter-spacing: 10px;
+                padding: 48px 0 24px 0;
+                margin: 0;
+            }
+            h1, .text{
+                text-align: center;
+                font-size: 48px;
+                font-weight: normal;
+                /* border-bottom: 0.8px #ddd solid; */
+            }
+           .tic-tac-toe{
+              text-align: center;
+              margin-top: 64px;
+           }
+
+           /* BORDERS */
+           .ver{
+               border-left: 2px solid #fff;
+               border-right: 2px solid #fff;
+           }
+
+           .hor{
+               border-top: 2px solid #fff;
+               border-bottom: 2px solid #fff;
+           }
+           /* BORDER END */
+
+
+            .generic{
+                width: 100px;
+                height: 100px;
+                /* border: 1px solid #fff; */
+                display: inline-block;
+                box-sizing: border-box;
+                text-align: center;
+                padding:32px;
+                font-size: 18px;
+            }
+            .generic:hover{
+                cursor: pointer;
+            }
+            
+            .button-section{
+                text-align: center;
+                /* margin-top: 24px; */
+                background: rgb(0,21,44);
+                padding: 10px;
+            }
+            .btn{
+                font-size: 48px;
+                background: rgb(0, 21, 44);
+                color: darkcyan;
+                outline: none;
+                border: none;
+                transition: all 0.2s;
+                font-family: monospace;
+                margin: 0 40px;
+            }
+            .btn:hover{
+                background: rgb(165, 211, 255);
+                color:rgb(0, 18, 43);
+                cursor: pointer;
+            }
+
+            .text{
+                border-bottom: none;
+                font-size: 36px;
+                margin: 100px;
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Tic Tac Toe!</h1>
+            <div class="button-section">
+                <button class="x-button btn">X</button>
+                <button class="o-button btn">O</button> 
+            </div>
+            <div class="tic-tac-toe">
+                <div>
+                    <div class="generic" data-row = "0" data-column="0">_</div>
+                    <div class="generic ver" data-row = "0" data-column="1">_</div>
+                    <div class="generic" data-row = "0" data-column="2">_</div>
+                </div>
+                <div>
+                    <div class="generic hor" data-row = "1" data-column="0">_</div>
+                    <div class="generic ver hor" data-row = "1" data-column="1">_</div>
+                    <div class="generic hor" data-row = "1" data-column="2">_</div>
+                </div>
+                <div>
+                    <div class="generic" data-row = "2" data-column="0">_</div>
+                    <div class="generic ver" data-row = "2" data-column="1">_</div>
+                    <div class="generic" data-row = "2" data-column="2">_</div>
+                </div>
+            </div>
+               
+            <div>
+                <h2 class="text"></h2>
+            </div>
+        </div>
+
+        <script>
+            let value, botVal;
+            let count = 0;
+            const text = document.querySelector('.text');
+            const generic = document.querySelectorAll('.generic');
+            const genericHandle = document.querySelectorAll('.generic');
+
+            // click on x button for the value to be x and o for value to be o.
+
+            document.querySelectorAll('.btn').forEach((button) => {
+                button.addEventListener('click', () => {
+                    value= button.textContent;
+                    resetAll(genericHandle);
+                    if(value === 'X'){
+                        botVal = 'O'
+                    }else if(value === 'O'){
+                        botVal = 'X';
+                    }else{
+                        botVal = "";
+                    }
+                });
+            });
+
+            //correspond each data-index element with the array. 
+        
+            genericHandle.forEach((item) => {
+                item.addEventListener('click', () => {
+                    if((value != "" && value != undefined) && (item.textContent === "_")){
+                            item.textContent = value;
+                            count = 0;
+                            bot();
+                            logic();     
+                    }
+                    
+                });
+            });
+
+//  Functions
+            function resetAll(handle){
+                handle.forEach((item) => {
+                    item.textContent = "_";
+                });
+            }
+           
+
+            function bot(){
+                let randIndex = Math.floor(Math.random() * genericHandle.length);
+                
+                console.log(randIndex);
+                if(genericHandle[randIndex].textContent === "_" || ""){
+                    genericHandle[randIndex].textContent = botVal;
+                }else{
+                    bot();
+                    count++;
+                    if(count > 20){
+                        console.error("Sorry, the AI sucks!")
+                        return 0;
+                    }
+                }
+            }
+
+
+            // =============================================WARNING================================================//
+            //===========================================CRAP CODE AHEAD===========================================// 
+            
+            // Horizontal Check x 3
+            // Vertical Check x 3
+            // Diagonal Check x 2
+
+           function logic(){
+            let calcHandle = [];
+            let winVal;
+            genericHandle.forEach((item) => {calcHandle.push(item.textContent);});
+            
+            // console.log("FUCKING BULLSHITE");
+            console.log(calcHandle);
+
+            if((calcHandle[0] === calcHandle[1]) && (calcHandle[0] === calcHandle[2])){
+                console.log('works');
+                winVal = calcHandle[0];
+                winningLogic(winVal);
+            }
+
+            if((calcHandle[3] === calcHandle[4]) && (calcHandle[3]=== calcHandle[5])){
+                winVal = calcHandle[3];
+                winningLogic(winVal);
+            }
+
+            if((calcHandle[6] === calcHandle[7]) && (calcHandle[6]=== calcHandle[8])){
+                winVal = calcHandle[6];
+                winningLogic(winVal);
+            }
+
+            if((calcHandle[0] === calcHandle[3]) && (calcHandle[0]=== calcHandle[6])){
+                winVal = calcHandle[0];
+                winningLogic(winVal);
+            }
+            if((calcHandle[1] === calcHandle[4]) && (calcHandle[1]=== calcHandle[7])){
+                winVal = calcHandle[1];
+                winningLogic(winVal);
+            }
+            if((calcHandle[2] === calcHandle[5]) && (calcHandle[2]=== calcHandle[8])){
+                winVal = calcHandle[2];
+                winningLogic(winVal);
+            }
+            if((calcHandle[0] === calcHandle[4]) && (calcHandle[0]=== calcHandle[8])){
+                winVal = calcHandle[0];
+                winningLogic(winVal);
+            }
+            if((calcHandle[2] === calcHandle[4]) && (calcHandle[2]=== calcHandle[6])){
+                winVal = calcHandle[2];
+                winningLogic(winVal);
+            }   
+           }
+           function winningLogic(val){
+               console.log("Winning Logic.")
+               let win;
+               if(val === value){
+                    win = "Player Wins!";
+               }else if(val === botVal){
+                    win = "Bot Wins!";
+               }else{
+                   win = "";
+               }
+               text.textContent = win;
+           }
+        </script>
+    </body >
+</html>
