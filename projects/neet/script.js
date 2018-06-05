@@ -23,3 +23,22 @@ function anchorLinkHandler(e) {
 const linksToAnchors = document.querySelectorAll('a[href^="#"]');
 
 linksToAnchors.forEach(each => (each.onclick = anchorLinkHandler));
+
+
+
+window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 40){
+        document.querySelector('#top').classList.add('display-top');
+    }else{
+        document.querySelector('#top').classList.remove('display-top');
+    }
+});
+
+// scroll
+// window.addEventListener('scroll', ()=>{
+//     if(window.scrollY){
+//         document.querySelector('nav').classList.add('fixed');
+//     }else{
+//         document.querySelector('nav').classList.remove('fixed');
+//     }
+// })
